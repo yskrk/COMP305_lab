@@ -55,6 +55,9 @@ public class PlayerController : MonoBehaviour
 		anim.SetFloat("yVelocity", rBody.velocity.y);
 		anim.SetBool("isGrounded", isGrounded);
 
+		// animation on moving floor
+
+
 		// die by fall
 		if (transform.position.y < isDieByFall) {
 			// reset scene
@@ -67,9 +70,22 @@ public class PlayerController : MonoBehaviour
 	}
 
 	private void OnCollisionEnter2D(Collision2D other) {
+		// die when touch hazards
 		if (other.collider.tag == "Hazard") {
 			// reset scene
 			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+		}
+
+		// check if player is on the moving floor
+		if (transform.parent == null && other.gameObject.name == "Moving Floor") {
+			transform.parent = other.gameObject.transform;
+		}
+	}
+
+	private void OnCollisionExit2D(Collision2D other) {
+		// check if player is NOT on the moving floor
+		if (transform.parent != null && other.gameObject.name == "Moving Floor") {
+			transform.parent = null;
 		}
 	}
 
