@@ -14,14 +14,16 @@ public class PlayerController : MonoBehaviour
 
 	// private vals
 	private Rigidbody2D rBody;
+	private Animator anim;
 	private bool isGrounded = false;
 	private float isDieByFall = -8.0f;
-	
+	private bool isFacingRight = true;
 
     // Start is called before the first frame update
     void Start()
     {
         rBody = GetComponent<Rigidbody2D>();
+		anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -43,6 +45,16 @@ public class PlayerController : MonoBehaviour
 
 		rBody.velocity = new Vector2(horiz * speed, rBody.velocity.y);
 
+		// check if the sprite needs to be flipped
+		if (isFacingRight && rBody.velocity.x < 0 || !isFacingRight && rBody.velocity.x > 0) {
+			Flip();
+		}
+
+		// communicate with the animator
+		anim.SetFloat("xVelocity", Mathf.Abs(rBody.velocity.x));
+		anim.SetFloat("yVelocity", rBody.velocity.y);
+		anim.SetBool("isGrounded", isGrounded);
+
 		// die by fall
 		if (transform.position.y < isDieByFall) {
 			// reset scene
@@ -59,5 +71,13 @@ public class PlayerController : MonoBehaviour
 			// reset scene
 			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 		}
+	}
+
+	private void Flip() {
+		Vector3 temp = transform.localScale;
+		temp.x *= -1;
+		transform.localScale = temp;
+
+		isFacingRight = !isFacingRight;
 	}
 }
