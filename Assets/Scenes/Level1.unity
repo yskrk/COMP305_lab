@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 427432881}
   - component: {fileID: 427432880}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: House
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3619,11 +3619,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8706291161369157910, guid: d319510d7a4b62e4284e9bc39885bc3f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 8706291161369157910, guid: d319510d7a4b62e4284e9bc39885bc3f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.66
+      value: 0.22
       objectReference: {fileID: 0}
     - target: {fileID: 8706291161369157910, guid: d319510d7a4b62e4284e9bc39885bc3f, type: 3}
       propertyPath: m_LocalPosition.z
