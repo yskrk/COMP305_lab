@@ -17,7 +17,7 @@ public class CameraTrigger : MonoBehaviour
 
 	private void OnTriggerExit2D(Collider2D other) {
 		if (other.CompareTag("Player")) {
-		vCamController.TransitionTo(cameraOut);
+			vCamController.TransitionTo(cameraOut);
 		}
 	}
 }
