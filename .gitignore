@@ -9,7 +9,8 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Mm]emoryCaptures/
-/[Ii]mports/ # 2019/09/15 add from week2 - Lecture
+/[Ii]mports/ # 2021/09/15 add from week2 - Lecture
+/[Aa]udio/ # 2021/11/18 add from week8 - Lecture
 
 # Never ignore Asset meta data
 !/[Aa]ssets/**/*.meta
