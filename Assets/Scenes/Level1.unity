@@ -1298,14 +1298,18 @@ PrefabInstance:
     - target: {fileID: 2541217384316426592, guid: e354d892bef95e94cb9e5cb08b9e6cb2, type: 3}
       propertyPath: m_BoundingShape2D
       value: 
+      objectReference: {fileID: 228190753}
+    - target: {fileID: 2541217384405672884, guid: e354d892bef95e94cb9e5cb08b9e6cb2, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2541217384405672886, guid: e354d892bef95e94cb9e5cb08b9e6cb2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.858316
+      value: -9.51981
       objectReference: {fileID: 0}
     - target: {fileID: 2541217384405672886, guid: e354d892bef95e94cb9e5cb08b9e6cb2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.5907156
+      value: 4.909815
       objectReference: {fileID: 0}
     - target: {fileID: 2541217384405672886, guid: e354d892bef95e94cb9e5cb08b9e6cb2, type: 3}
       propertyPath: m_LocalPosition.z
