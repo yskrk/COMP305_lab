@@ -78,14 +78,14 @@ public class PlayerController : MonoBehaviour
 		}
 
 		// check if player is on the moving floor
-		if (transform.parent == null && other.gameObject.name == "Moving Floor") {
+		if (transform.parent == null && other.gameObject.name == "Platform") {
 			transform.parent = other.gameObject.transform;
 		}
 	}
 
 	private void OnCollisionExit2D(Collision2D other) {
 		// check if player is NOT on the moving floor
-		if (transform.parent != null && other.gameObject.name == "Moving Floor") {
+		if (transform.parent != null && other.gameObject.name == "Platform") {
 			transform.parent = null;
 		}
 	}
