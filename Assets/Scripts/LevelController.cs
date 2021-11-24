@@ -25,7 +25,7 @@ public class LevelController : MonoBehaviour
 	private int totalItemsQty = 0, itemsCollectedQty = 0;
 
 	// public
-	[SerializeField] private Text intemUIText;
+	[SerializeField] private Text itemUIText;
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +36,7 @@ public class LevelController : MonoBehaviour
     }
 
 	private void UpdateItemUI() {
-		intemUIText.text = itemsCollectedQty + " / " + totalItemsQty;
+		itemUIText.text = itemsCollectedQty + " / " + totalItemsQty;
 	}
 
 	public void PickedUpItem() {
@@ -46,9 +46,18 @@ public class LevelController : MonoBehaviour
 	}
 
 	public void CheckLevelEnd() {
-		if (itemsCollectedQty == totalItemsQty) {
+		if (checkItemCount()) {
 			// go to next level
-			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex  + 1);
+			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 		}
+	}
+
+	public bool checkItemCount() {
+		bool isCorrected = false;
+		if (itemsCollectedQty == totalItemsQty) {
+			isCorrected = true;
+		}
+
+		return isCorrected;
 	}
 }

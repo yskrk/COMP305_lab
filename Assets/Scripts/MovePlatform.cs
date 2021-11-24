@@ -46,6 +46,7 @@ public class MovePlatform : MonoBehaviour
 		}
 	}
 
+	// for editor
 	public void AddNewWaypoint() {
 		GameObject gObj = Instantiate(waypointObj, Vector2.zero, Quaternion.identity);
 		gObj.transform.SetParent(transform.parent.GetChild(1));

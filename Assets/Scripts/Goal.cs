@@ -15,10 +15,18 @@ public class Goal : MonoBehaviour
     }
 
 	private void OnTriggerEnter2D(Collider2D other) {
-		if (other.name == player.name) {
-			goal.GetComponent<Text>();
-			goal.SetActive(true);
-			player.SetActive(false);
+		if (other.CompareTag("Player")) {
+			if (LevelController.Instance.checkItemCount()) {
+				goal.GetComponent<Text>();
+				goal.SetActive(true);
+				player.SetActive(false);
+			}
+			
 		}
+		// if (other.name == player.name) {
+		// 	goal.GetComponent<Text>();
+		// 	goal.SetActive(true);
+		// 	player.SetActive(false);
+		// }
 	}
 }

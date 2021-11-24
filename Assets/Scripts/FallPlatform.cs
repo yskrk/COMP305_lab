@@ -63,6 +63,7 @@ public class FallPlatform : MonoBehaviour
 		// process during falling
 		if (isFall) {
 			rbPlatform.velocity = fallVelociity;
+			this.col.isTrigger = true;
 		}
 	}
 
@@ -70,6 +71,12 @@ public class FallPlatform : MonoBehaviour
 		if (other.transform.position.y >= transform.position.y && other.gameObject.tag == "Player") {
 			// Debug.Log("player on the platform");
 			isOnPlayer = true;
+		}
+	}
+
+	private void OnTriggerEnter2D(Collider2D other) {
+		if (other.CompareTag("Destroyer")) {
+			Destroy(this.gameObject);
 		}
 	}
 }

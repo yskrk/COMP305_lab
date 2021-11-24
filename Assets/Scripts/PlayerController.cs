@@ -90,6 +90,12 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
+	private void OnTriggerEnter2D(Collider2D other) {
+		if (other.CompareTag("Platform")) {
+			isGrounded = true;
+		}
+	}
+
 	private void Flip() {
 		Vector3 temp = transform.localScale;
 		temp.x *= -1;
