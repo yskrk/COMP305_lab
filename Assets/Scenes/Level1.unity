@@ -6183,6 +6183,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6645728850583496199, guid: 1375ce93659675740812181b0a64456c, type: 3}
+      propertyPath: itemUIText
+      value: 
+      objectReference: {fileID: 62476900}
+    - target: {fileID: 6645728850583496199, guid: 1375ce93659675740812181b0a64456c, type: 3}
       propertyPath: intemUIText
       value: 
       objectReference: {fileID: 62476900}
