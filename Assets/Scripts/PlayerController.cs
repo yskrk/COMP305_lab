@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -18,6 +16,7 @@ public class PlayerController : MonoBehaviour
 	private bool isGrounded = false;
 	private float isDieByFall = -8.0f;
 	private bool isFacingRight = true;
+	private bool isLevelEnd = false;
 
     // Start is called before the first frame update
     void Start()
@@ -34,35 +33,39 @@ public class PlayerController : MonoBehaviour
 
 	// physics
 	private void FixedUpdate() {
-		float horiz = Input.GetAxis("Horizontal");
-		isGrounded = GroundCheck();
+		if (!isLevelEnd) {
+			float horiz = Input.GetAxis("Horizontal");
+			isGrounded = GroundCheck();
 
-		// jump code here
-		if (isGrounded && Input.GetAxis("Jump") > 0) {
-			rBody.AddForce(new Vector2(0.0f, jumpForce));
-			isGrounded = false;
-			// GetComponent<AudioSource>().Play();
-		}
+			// jump code here
+			if (isGrounded && Input.GetAxis("Jump") > 0) {
+				rBody.AddForce(new Vector2(0.0f, jumpForce));
+				isGrounded = false;
+				// GetComponent<AudioSource>().Play();
+			}
 
-		rBody.velocity = new Vector2(horiz * speed, rBody.velocity.y);
+			rBody.velocity = new Vector2(horiz * speed, rBody.velocity.y);
 
-		// check if the sprite needs to be flipped
-		if (isFacingRight && rBody.velocity.x < 0 || !isFacingRight && rBody.velocity.x > 0) {
-			Flip();
-		}
+			// check if the sprite needs to be flipped
+			if (isFacingRight && rBody.velocity.x < 0 || !isFacingRight && rBody.velocity.x > 0) {
+				Flip();
+			}
 
-		// communicate with the animator
-		anim.SetFloat("xVelocity", Mathf.Abs(rBody.velocity.x));
-		anim.SetFloat("yVelocity", rBody.velocity.y);
-		anim.SetBool("isGrounded", isGrounded);
+			// communicate with the animator
+			anim.SetFloat("xVelocity", Mathf.Abs(rBody.velocity.x));
+			anim.SetFloat("yVelocity", rBody.velocity.y);
+			anim.SetBool("isGrounded", isGrounded);
 
-		// animation on moving floor
+			// animation on moving floor
 
 
-		// die by fall
-		if (transform.position.y < isDieByFall) {
-			// reset scene
-			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+			// die by fall
+			if (transform.position.y < isDieByFall) {
+				// reset scene
+				SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+			}
+		} else {
+			transform.gameObject.SetActive(false);
 		}
 	}
 
@@ -102,5 +105,9 @@ public class PlayerController : MonoBehaviour
 		transform.localScale = temp;
 
 		isFacingRight = !isFacingRight;
+	}
+
+	public void LevelEndTrigger() {
+		isLevelEnd = true;
 	}
 }

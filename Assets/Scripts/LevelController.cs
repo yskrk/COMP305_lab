@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+using UnityEngine.Playables;
 
 public class LevelController : MonoBehaviour
 {
@@ -19,6 +19,8 @@ public class LevelController : MonoBehaviour
 		else {
 			_instance = this;
 		}
+
+		pDir.enabled = false;
 	}
 
 	// privates
@@ -26,6 +28,7 @@ public class LevelController : MonoBehaviour
 
 	// public
 	[SerializeField] private Text itemUIText;
+	[SerializeField] private PlayableDirector pDir;
 
     // Start is called before the first frame update
     void Start()
@@ -47,8 +50,13 @@ public class LevelController : MonoBehaviour
 
 	public void CheckLevelEnd() {
 		if (checkItemCount()) {
-			// go to next level
-			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+			// play ana animation of the character jumping up and down
+
+			// play level end audio
+			Camera.main.gameObject.GetComponent<AudioSource>().Stop();
+
+			// show level end UI
+			pDir.enabled = true;
 		}
 	}
 
