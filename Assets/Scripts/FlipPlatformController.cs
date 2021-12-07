@@ -10,7 +10,7 @@ public class FlipPlatformController : MonoBehaviour
 	[SerializeField] private float FlippedPosZ2 = 180.0f;
 
 	private bool isRotated = false;
-	private bool isPlayerOn = false;
+	// private bool isPlayerOn = false;
 	private float rotationTimer;
 
     // Start is called before the first frame update
@@ -23,28 +23,25 @@ public class FlipPlatformController : MonoBehaviour
     void Update()
     {
 		// stop rotation during player on the platform
-		// if (!isPlayerOn) {
-		if (true) {
-			// increase timer
-			rotationTimer = rotationTimer + Time.deltaTime;
+		// increase timer
+		rotationTimer = rotationTimer + Time.deltaTime;
 
-			if (rotationTimer >= rotationDuration) {
-				// flip
-				transform.Rotate(
-					new Vector3(
-						transform.rotation.x,
-						transform.rotation.y,
-						FlippedPosZ2) * (Time.deltaTime * rotationSpeedFactor));
+		if (rotationTimer >= rotationDuration) {
+			// flip
+			transform.Rotate(
+				new Vector3(
+					transform.rotation.x,
+					transform.rotation.y,
+					FlippedPosZ2) * (Time.deltaTime * rotationSpeedFactor));
 
-				if (isRotated && transform.rotation.z > 0.1f) {
-					// Debug.Log("platrorm is flipped again");
-					StopRotation(FlippedPosZ1);
-				}
+			if (isRotated && transform.rotation.z > 0.1f) {
+				// Debug.Log("platrorm is flipped again");
+				StopRotation(FlippedPosZ1);
+			}
 
-				if (!isRotated && transform.rotation.z < 0.0f) {
-					// Debug.Log("platrorm is flipped");
-					StopRotation(FlippedPosZ2);
-				}
+			if (!isRotated && transform.rotation.z < 0.0f) {
+				// Debug.Log("platrorm is flipped");
+				StopRotation(FlippedPosZ2);
 			}
 		}
     }
@@ -56,15 +53,15 @@ public class FlipPlatformController : MonoBehaviour
 		rotationTimer = 0.0f;
 	}
 
-	private void OnCollisionEnter2D(Collision2D other) {
-		if (other.gameObject.tag == "Player") {
-			isPlayerOn = true;
-		}
-	}
+	// private void OnCollisionEnter2D(Collision2D other) {
+	// 	if (other.gameObject.tag == "Player") {
+	// 		isPlayerOn = true;
+	// 	}
+	// }
 
-	private void OnCollisionExit2D(Collision2D other) {
-		if (other.gameObject.tag == "Player") {
-			isPlayerOn = false;
-		}
-	}
+	// private void OnCollisionExit2D(Collision2D other) {
+	// 	if (other.gameObject.tag == "Player") {
+	// 		isPlayerOn = false;
+	// 	}
+	// }
 }
